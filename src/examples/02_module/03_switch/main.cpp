@@ -1,10 +1,11 @@
 #include<iostream>
+#include "switch.h"
 
 int main() 
 {
-	auto some_year = 100;
-
-	std::cout << some_year;
+	auto menu_option = 100;
+	
+	std::cout << menu(menu_option);
 
 	return 0;
 }

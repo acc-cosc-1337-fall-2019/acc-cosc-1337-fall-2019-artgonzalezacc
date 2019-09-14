@@ -25,5 +25,4 @@ string menu(int menu_option)
 		return "Invalid";
 	}
 	
-	return string();
 }
