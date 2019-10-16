@@ -1,18 +1,14 @@
 #include<iostream>
 #include<vector>
-#include "atm.h"
-#include "customer.h"
+#include"checking_account.h"
 
 using std::cout; using std::vector; using std::cin;
 
 int main()
-{
-	Customer customer;
-	customer.add_account(BankAccount(500));
-	customer.add_account(BankAccount(1500));
-	customer.add_account(BankAccount(5000));
+{	
+	CheckingAccount a(1500);
+	cout << a.get_balance();
 	
-	cout << customer;
 
 	return 0;
 }
