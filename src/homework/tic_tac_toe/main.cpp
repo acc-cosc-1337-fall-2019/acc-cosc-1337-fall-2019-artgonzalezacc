@@ -9,7 +9,6 @@ int main()
 	char cont = 'y';
 	TicTacToe game;
 	string player;
-	int position;
 
 	do 
 	{
@@ -20,10 +19,8 @@ int main()
 
 		while(game.game_over() == false)
 		{
-			cout << "Enter position from 1 to 9: ";
-			cin >> position;
-			game.mark_board(position);
-			game.display_board();
+			cin >> game;
+			cout<<game;
 		}
 	
 		cout << "Game over: ";
