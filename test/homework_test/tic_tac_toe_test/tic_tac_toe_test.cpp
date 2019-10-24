@@ -121,22 +121,24 @@ TEST_CASE("Test win by third row", "[X wins third row]")
 	REQUIRE(board.game_over() == true);
 }
 
-TEST_CASE("Test win diagonal 1", "[X wins with 1 5 9]")
+TEST_CASE("Test win diagonal 1", "[O wins with 1 5 9]")
 {
 	TicTacToe board;
-	board.start_game("X");
+	board.start_game("O");
 	REQUIRE(board.game_over() == false);
-	board.mark_board(1);//X         
+	board.mark_board(1);//O         
 	REQUIRE(board.game_over() == false);
-	board.mark_board(4);//O          
+	board.mark_board(4);//X          
 	REQUIRE(board.game_over() == false);
-	board.mark_board(5);//X          
+	board.mark_board(5);//O          
 	REQUIRE(board.game_over() == false);
-	board.mark_board(3);//O          
+	board.mark_board(3);//X          
 	REQUIRE(board.game_over() == false);
-	board.mark_board(9);//X 
-	//X wins 
+	board.mark_board(9);//O 
+	//O wins 
 	REQUIRE(board.game_over() == true);
+
+	REQUIRE(board.get_winner() == "O");
 }
 
 TEST_CASE("Test win diagonal 2", "[X wins with 3 5 7]")
@@ -155,6 +157,8 @@ TEST_CASE("Test win diagonal 2", "[X wins with 3 5 7]")
 	board.mark_board(7);//X 
 	//X wins 
 	REQUIRE(board.game_over() == true);
+
+	REQUIRE(board.get_winner() == "X");
 }
 
 TEST_CASE("Test tie")
@@ -182,4 +186,5 @@ TEST_CASE("Test tie")
 	//no winner
 	REQUIRE(board.game_over() == true);
 
+	REQUIRE(board.get_winner() == "C");
 }

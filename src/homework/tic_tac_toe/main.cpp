@@ -1,4 +1,4 @@
-#include"tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
 #include<iostream>
 #include<string>
 
@@ -7,11 +7,13 @@ using std::cout; using std::cin; using std::string;
 int main() 
 {
 	char cont = 'y';
-	TicTacToe game;
+	TicTacToeManager manager;
 	string player;
 
 	do 
 	{
+		TicTacToe game;
+
 		cout << "Enter X or O";
 		cin >> player;
 
@@ -22,6 +24,8 @@ int main()
 			cin >> game;
 			cout<<game;
 		}
+
+		manager.save_game(game);
 	
 		cout << "Game over: ";
 
@@ -30,6 +34,8 @@ int main()
 
 	} while (cont == 'y' || cont == 'Y');
 
+	cout << "History: \n";
+	cout << manager;
 
 	return 0;
 }
