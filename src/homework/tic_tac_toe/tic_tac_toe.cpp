@@ -50,9 +50,16 @@ string TicTacToe::get_winner()const
 ostream& operator<<(ostream& out, const TicTacToe& t)
 {
 	
-	for (std::size_t i = 0; i < 9; i += 3)
+	for (std::size_t i = 0; i < t.pegs.size(); i += sqrt(t.pegs.size()))
 	{
-		out << t.pegs[i] << "|" << t.pegs[i + 1] << "|" << t.pegs[i + 2]<<'\n';
+		out << t.pegs[i] << "|" << t.pegs[i + 1] << "|" << t.pegs[i + 2];
+
+		if (t.pegs.size() == 16)
+		{
+			out << "|" << t.pegs[i + 3];
+		}
+
+		out << "\n";
 	}
 
 	return out;
@@ -62,7 +69,7 @@ istream& operator>>(istream& in, TicTacToe& t)
 {
 	int position;
 
-	std::cout << "Enter position from 1 to 9: ";
+	std::cout << "Enter position from 1 to "<<t.pegs.size()<<": ";
 	in >> position;
 	t.mark_board(position);
 
