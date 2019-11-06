@@ -15,6 +15,8 @@ Represents one game of tic tac toe.
 class TicTacToe 
 {
 public:
+	TicTacToe() {};
+	TicTacToe(int size) : pegs(size*size, " ") {};
 	bool game_over();
 	void start_game(string player);
 	void mark_board(int position);
@@ -23,15 +25,17 @@ public:
 	friend ostream& operator<<(ostream& out, const TicTacToe& t);
 	friend istream& operator>>(istream& in, TicTacToe& t);
 
+protected:
+	virtual bool check_column_win();
+	virtual bool check_row_win();
+	virtual bool check_diagonal_win();
+	vector<string> pegs;
+
 private:
 	void set_next_player();
-	bool check_column_win();
-	bool check_row_win();
-	bool check_diagonal_win();
 	void clear_board();
 	bool check_board_full();
 	void set_winner();
-	vector<string> pegs{ 9, " " };//initializer
 	string next_player;
 	string winner;
 };
