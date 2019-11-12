@@ -2,9 +2,9 @@
 #include <iostream>
 #include<memory>
 #include<vector>
-#include "shape.h"
-#include "line.h"
-#include "circle.h"
+#include "shapes.h"
+#include "lines.h"
+#include "circles.h"
 
 int main() 
 {
