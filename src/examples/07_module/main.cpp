@@ -2,20 +2,22 @@
 #include <iostream>
 #include<memory>
 #include<vector>
-#include "shapes.h"
-#include "lines.h"
-#include "circles.h"
+#include"../07_module/shape.h"
+#include"../07_module/line.h"
+#include"../07_module/circle.h"
+
+using mod7ex::Shape; using mod7ex::Line; using mod7ex::Circle;
 
 int main() 
 {
 	//Shape s_abtract; can't create instance; pure virtual
 	//function makes it an abstract class
 
-	SShape* line = new LLine();//creates dynamic memory (heap)
+	Shape* line = new Line();//creates dynamic memory (heap)
 	line->draw();
 	delete line;
 
-	std::vector < SShape *> shapes{ new LLine(), new CCircle() };
+	std::vector < Shape *> shapes{ new Line(), new Circle() };
 	//using a reference operator
 	for (auto & shape : shapes)
 	{
@@ -27,12 +29,12 @@ int main()
 		shape->draw();
 	}
 	   	  	
-	std::unique_ptr < SShape > line2 = std::make_unique< LLine >();
+	std::unique_ptr < Shape > line2 = std::make_unique< Line >();
 	line2->draw();
 
-	std::vector <std::unique_ptr < SShape >> shapes2;
-	shapes2.push_back(std::make_unique< LLine >());
-	shapes2.push_back(std::make_unique< CCircle >());
+	std::vector <std::unique_ptr < Shape >> shapes2;
+	shapes2.push_back(std::make_unique< Line >());
+	shapes2.push_back(std::make_unique< Circle >());
 	
 	for (auto & shape : shapes2)
 	{
