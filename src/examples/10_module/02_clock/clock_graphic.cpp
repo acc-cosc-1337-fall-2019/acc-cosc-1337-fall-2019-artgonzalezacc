@@ -19,7 +19,6 @@ void ClockGraphic::draw()
 	draw_hours_hand();
 	draw_minutes_hand();
 	draw_seconds_hand();
-	//draw_digital_time();
 	clock.update_time();
 }
 
@@ -28,7 +27,7 @@ Draw a clock hand on this Clock at angle degrees length pixels long
 */
 void ClockGraphic::draw_hand(double degrees, int length)
 {
-	double angle = get_degrees(degrees);
+	double angle = get_degrees(degrees - rotate_circle_offset);
 	int x1 = width / 2;
 	int y1 = height / 2;
 	int x2 = cos(angle) * length + width / 2;
@@ -40,14 +39,14 @@ void ClockGraphic::draw_hand(double degrees, int length)
 
 void ClockGraphic::draw_hours_hand()
 {
-	double hours_angle = clock.get_hours() * 30; /// 12.0 * 360.0;
+	double hours_angle = clock.get_hours() * 30;
 	device_context->SetPen(wxPen(wxColor(255, 0, 0), 3));
 	draw_hand(hours_angle, 45);
 }
 
 void ClockGraphic::draw_minutes_hand()
 {
-	double minutes_angle = clock.get_minutes() * 6;// 60.0 * 360.0;
+	double minutes_angle = clock.get_minutes() * 6;
 
 	device_context->SetPen(wxPen(wxColor(0, 0, 255), 3));
 	draw_hand(minutes_angle, 90);
@@ -55,7 +54,7 @@ void ClockGraphic::draw_minutes_hand()
 
 void ClockGraphic::draw_seconds_hand()
 {
-	double seconds_angle = clock.get_seconds() * 6;// / 60.0 * 360.0;
+	double seconds_angle = clock.get_seconds() * 6;
 
 	device_context->SetPen(wxPen(wxColor(0, 255, 0), 1));
 	draw_hand(seconds_angle, 105);
@@ -65,7 +64,7 @@ void ClockGraphic::draw_hours_text()
 {
 	for (int i = 0; i < 12; i++)
 	{
-		double hours_angle = i * 30;// / 12.0 *360.0;
+		double hours_angle = i * 30 - rotate_circle_offset;
 		double angle = get_degrees(hours_angle);
 		double length = 90;
 
@@ -93,7 +92,7 @@ void ClockGraphic::draw_seconds_markers()
 {
 	for (int i = 0; i < 60; i++)
 	{
-		double seconds_angle = i * 6; // / 60.0 * 360.0;
+		double seconds_angle = i * 6 - rotate_circle_offset; 
 		double angle = get_degrees(seconds_angle);
 		double inner_length = 105;
 		double outer_length = 110;
@@ -117,6 +116,6 @@ Given degrees return the radians
 */
 double ClockGraphic::get_degrees(double angle)
 {
-	return (angle-90) * pi / 180;
+	return angle * pi / 180;
 }
 

@@ -36,6 +36,7 @@ private:
 	int height;
 	int width;
 	const double pi{ 3.14159265358979323846 };
+	const int rotate_circle_offset{ 90 };
 };
 
 #endif // !CLOCK_GRAPHIC_H
