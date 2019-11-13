@@ -2,7 +2,7 @@
 
 //line.cpp
 
-void Line::draw()
+void LLine::draw()
 {
 	std::cout << "Draw line\n"; 
 }

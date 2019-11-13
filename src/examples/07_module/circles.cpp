@@ -2,7 +2,7 @@
 
 //circle.cpp
 
-void Circle::draw()
+void CCircle::draw()
 {
 	std::cout << "Draw circle";
 }

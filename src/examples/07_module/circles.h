@@ -4,7 +4,7 @@
 
 #include"shape.h"
 
-class Circle : public Shape
+class CCircle : public SShape
 {
 public:
 	void draw() override;

@@ -3,7 +3,7 @@
 #define  LINE_H
 #include"shape.h"
 
-class Line : public Shape
+class LLine : public SShape
 {
 public:
 	void draw() override;

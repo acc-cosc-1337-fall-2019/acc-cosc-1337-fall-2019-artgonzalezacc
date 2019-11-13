@@ -4,7 +4,7 @@
 #include<iostream>
 using std::cout;
 
-class Shape
+class SShape
 {
 public:
 	virtual void draw() = 0;//pure virtual function, abstract class

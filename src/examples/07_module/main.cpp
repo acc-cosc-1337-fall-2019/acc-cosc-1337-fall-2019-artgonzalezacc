@@ -11,11 +11,11 @@ int main()
 	//Shape s_abtract; can't create instance; pure virtual
 	//function makes it an abstract class
 
-	Shape* line = new Line();//creates dynamic memory (heap)
+	SShape* line = new LLine();//creates dynamic memory (heap)
 	line->draw();
 	delete line;
 
-	std::vector < Shape *> shapes{ new Line(), new Circle() };
+	std::vector < SShape *> shapes{ new LLine(), new CCircle() };
 	//using a reference operator
 	for (auto & shape : shapes)
 	{
@@ -27,12 +27,12 @@ int main()
 		shape->draw();
 	}
 	   	  	
-	std::unique_ptr < Shape > line2 = std::make_unique< Line >();
+	std::unique_ptr < SShape > line2 = std::make_unique< LLine >();
 	line2->draw();
 
-	std::vector <std::unique_ptr < Shape >> shapes2;
-	shapes2.push_back(std::make_unique< Line >());
-	shapes2.push_back(std::make_unique< Circle >());
+	std::vector <std::unique_ptr < SShape >> shapes2;
+	shapes2.push_back(std::make_unique< LLine >());
+	shapes2.push_back(std::make_unique< CCircle >());
 	
 	for (auto & shape : shapes2)
 	{
