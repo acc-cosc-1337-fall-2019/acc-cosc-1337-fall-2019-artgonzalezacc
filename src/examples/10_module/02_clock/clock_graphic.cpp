@@ -30,8 +30,9 @@ void ClockGraphic::draw_hand(double degrees, int length)
 	double angle = get_degrees(degrees - rotate_circle_offset);
 	int x1 = width / 2;
 	int y1 = height / 2;
-	int x2 = cos(angle) * length + width / 2;
-	int y2 = sin(angle) * length + width / 2;
+	int x2;
+	int y2;
+	get_x_y_points(angle, length, x2, y2);
 
 	std::unique_ptr<Shape> line = std::make_unique<Line>(device_context, Point(x1, y1), Point(x2, y2));
 	line->draw();
@@ -40,6 +41,9 @@ void ClockGraphic::draw_hand(double degrees, int length)
 void ClockGraphic::draw_hours_hand()
 {
 	double hours_angle = clock.get_hours() * 30;
+	double minutes_offset = clock.get_minutes() / 60.0 * 30;
+	hours_angle += minutes_offset;
+
 	device_context->SetPen(wxPen(wxColor(255, 0, 0), 3));
 	draw_hand(hours_angle, 45);
 }
@@ -64,7 +68,12 @@ void ClockGraphic::draw_hours_text()
 {
 	for (int i = 0; i < 12; i++)
 	{
-		double hours_angle = i * 30 - rotate_circle_offset;
+		double hours_angle = i * 30 - rotate_circle_offset - 2;
+		if (i >= 6 && i < 10)
+		{
+			hours_angle += 5;
+		}
+				
 		double angle = get_degrees(hours_angle);
 		double length = 90;
 
@@ -73,8 +82,10 @@ void ClockGraphic::draw_hours_text()
 			length = 100;
 		}
 
-		int x1 = cos(angle) * length + width / 2;
-		int y1 = sin(angle) * length + width / 2;
+		int x1;
+		int y1;
+		get_x_y_points(angle, length, x1, y1);
+
 		int hour;
 		if (i == 0)
 			hour = 12;
@@ -97,10 +108,13 @@ void ClockGraphic::draw_seconds_markers()
 		double inner_length = 105;
 		double outer_length = 110;
 
-		int x1 = cos(angle) * inner_length + width / 2;
-		int y1 = sin(angle) * inner_length + width / 2;
-		int x2 = cos(angle) * outer_length + width / 2;
-		int y2 = sin(angle) * outer_length + width / 2;
+		int x1;
+		int y1;
+		get_x_y_points(angle, inner_length, x1, y1);
+
+		int x2;
+		int y2;
+		get_x_y_points(angle, outer_length, x2, y2);
 
 		std::unique_ptr<Shape> line = std::make_unique<Line>(device_context, Point(x1, y1), Point(x2, y2));
 		line->draw();
@@ -117,5 +131,11 @@ Given degrees return the radians
 double ClockGraphic::get_degrees(double angle)
 {
 	return angle * pi / 180;
+}
+
+void ClockGraphic::get_x_y_points(double angle, int length, int& x, int&y)
+{
+	x = cos(angle) * length + width / 2;
+	y = sin(angle) * length + width / 2;
 }
 

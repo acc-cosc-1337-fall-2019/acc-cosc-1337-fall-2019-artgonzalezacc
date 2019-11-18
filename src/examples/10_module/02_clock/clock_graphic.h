@@ -26,6 +26,7 @@ private:
 	void draw_hours_text();
 	void draw_seconds_markers();
 	double get_degrees(double angle);
+	void get_x_y_points(double angle, int length, int& x, int&y);
 
 	wxDC* device_context;
 	Clock clock;
