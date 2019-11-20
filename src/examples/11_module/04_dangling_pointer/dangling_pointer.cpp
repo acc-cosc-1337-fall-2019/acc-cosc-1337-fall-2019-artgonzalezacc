@@ -1,13 +1,17 @@
 #include "dangling_pointer.h"
+#include<iostream>
 
 //
 
 void dangling_pointer()
 {
-	int* ptr = new int(100);
-	int* inoccent_ptr = ptr;
-
-	delete ptr;
-	//other lines code
-	//use inoccent ptr in the future will cause problems
+	int * ptr_num = new int(5);
+	int * ptr = ptr_num;
+	std::cout << *ptr;
+	delete ptr_num;
+	std::cout << *ptr;
+	ptr_num = nullptr;
+	
+	//ptr points to invalid
+	//address	
 }

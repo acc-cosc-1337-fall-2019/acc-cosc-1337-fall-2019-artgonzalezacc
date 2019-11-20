@@ -2,12 +2,14 @@
 
 int main() 
 {
-	memory_leak(); //we leaked memory (a little bit)
+	memory_leak();
 
 	while (true) 
 	{
-		memory_leak();//leaked lots of memory
+		memory_leak();
 	}
-	
+
+	//more code
+	//etc more code
 	return 0;
 }

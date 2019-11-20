@@ -4,7 +4,6 @@
 
 void memory_leak()
 {
-	int* ptr = new int(10);
-	//use it 
-	//forgot to delete and set to null
+	int * ptr_num = new int(5);//allocate memory
+
 }
