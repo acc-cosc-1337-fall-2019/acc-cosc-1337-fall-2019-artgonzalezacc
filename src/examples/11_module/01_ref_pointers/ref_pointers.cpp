@@ -1,15 +1,13 @@
 #include "ref_pointers.h"
 
 //
-
+/*
+Show that references and pointers can modify
+data pointed to
+*/
 void ref(int &number, int* numberPtr)
 {
-	number = 100;
+	number = 500;
 	*numberPtr = 1000;
 }
 
-int* return_pointer(int number) 
-{
-	int* return_value = new int(number * number);
-	return return_value;
-}
